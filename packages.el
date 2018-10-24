@@ -1,0 +1,1 @@
+(package! ns-auto-titlebar)
