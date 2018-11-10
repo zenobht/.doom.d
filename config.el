@@ -13,7 +13,10 @@
 (map!
     (:after evil
         :n "M-h" #'next-buffer
-        :n "M-l" #'previous-buffer)
+        :n "M-l" #'previous-buffer
+        :n "M-j" #'dumb-jump-go
+        :n "M-k" #'dumb-jump-back
+        )
 
     (:after neotree
         :map neotree-mode-map
@@ -55,3 +58,5 @@
 (setq web-mode-css-indent-offset 2) ; web-mode, css in html file
 (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
 (setq css-indent-offset 2) ; css-mode
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
