@@ -21,11 +21,14 @@
     (:after evil
         :n "M-h" #'next-buffer
         :n "M-l" #'previous-buffer
-        :n "M-j" #'dumb-jump-go
-        :n "M-k" #'dumb-jump-back
-        :n "C-S-j" #'drag-stuff-down
-        :n "C-S-k" #'drag-stuff-up
-        )
+        :n "M-j" #'drag-stuff-down
+        :n "M-k" #'drag-stuff-up
+
+        (:leader
+            (:desc "Dumb jump" :prefix "d"
+                :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
+                :desc "Jump back"         :nv "k" #'dumb-jump-back
+                :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
 
     (:after neotree
         :map neotree-mode-map
@@ -53,8 +56,7 @@
 
     (:after ivy
       :n "M-f" #'+ivy/project-search
-      :n "M-F" #'swiper
-      )
+      :n "M-F" #'swiper)
 )
 
 (setq c-basic-offset 2)
