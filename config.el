@@ -5,10 +5,17 @@
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
       doom-big-font (font-spec :family "Fira Code Mod" :size 19))
 
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
 (def-package! ns-auto-titlebar
   :config
   (setq ns-auto-hide-menu-bar nil
         ns-auto-titlebar-mode t))
+
+(def-package! drag-stuff
+  :config
+  (setq drag-stuff-mode t))
 
 (map!
     (:after evil
@@ -16,6 +23,8 @@
         :n "M-l" #'previous-buffer
         :n "M-j" #'dumb-jump-go
         :n "M-k" #'dumb-jump-back
+        :n "C-S-j" #'drag-stuff-down
+        :n "C-S-k" #'drag-stuff-up
         )
 
     (:after neotree
