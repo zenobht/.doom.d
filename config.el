@@ -8,14 +8,11 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-(def-package! ns-auto-titlebar
-  :config
-  (setq ns-auto-hide-menu-bar nil
-        ns-auto-titlebar-mode t))
-
 (def-package! drag-stuff
   :config
   (setq drag-stuff-mode t))
+
+(def-package! vmd-mode)
 
 (map!
     (:after evil
@@ -29,34 +26,6 @@
                 :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
                 :desc "Jump back"         :nv "k" #'dumb-jump-back
                 :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
-
-    (:after neotree
-        :map neotree-mode-map
-        :n "g"         nil
-        :n [tab]       #'neotree-quick-look
-        :n "RET"       #'neotree-enter
-        :n [backspace] #'evil-window-prev
-        :n "c"         #'neotree-create-node
-        :n "j"         #'neotree-next-line
-        :n "k"         #'neotree-previous-line
-        :n "n"         #'neotree-next-line
-        :n "p"         #'neotree-previous-line
-        :n "h"         #'+neotree/collapse-or-up
-        :n "l"         #'+neotree/expand-or-open
-        :n "J"         #'neotree-select-next-sibling-node
-        :n "K"         #'neotree-select-previous-sibling-node
-        :n "H"         #'neotree-select-up-node
-        :n "L"         #'neotree-select-down-node
-        :n "G"         #'evil-goto-line
-        :n "gg"        #'evil-goto-first-line
-        :n "v"         #'neotree-enter-vertical-split
-        :n "s"         #'neotree-enter-horizontal-split
-        :n "q"         #'neotree-hide
-        :n "R"         #'neotree-refresh)
-
-    (:after ivy
-      :n "M-f" #'+ivy/project-search
-      :n "M-F" #'swiper)
 )
 
 (setq c-basic-offset 2)
@@ -71,3 +40,5 @@
 (setq css-indent-offset 2) ; css-mode
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))

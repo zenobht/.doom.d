@@ -1,2 +1,3 @@
-(package! ns-auto-titlebar)
 (package! drag-stuff)
+(package! vmd-mode)
+(package! ivy-rich :disable t)
