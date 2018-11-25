@@ -26,6 +26,11 @@
                 :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
                 :desc "Jump back"         :nv "k" #'dumb-jump-back
                 :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
+
+    (:after ivy
+      :n "M-f" #'+ivy/project-search
+      :n "M-F" #'swiper	)
+
 )
 
 (setq c-basic-offset 2)
@@ -42,3 +47,4 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+(setq evil-ex-search-case 'sensitive)
