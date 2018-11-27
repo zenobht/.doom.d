@@ -50,5 +50,5 @@
 (setq evil-ex-search-case 'sensitive)
 
 (load-file "~/.doom.d/fira.el")
-(add-hook 'rjsx-mode-hook 'fira-code-mode)
-(add-hook 'js-mode-hook 'fira-code-mode)
+
+(add-hook 'prog-mode-hook #'fira-code-mode)
