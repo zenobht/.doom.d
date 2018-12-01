@@ -9,10 +9,17 @@
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
 (def-package! drag-stuff
-  :config
-  (setq drag-stuff-mode t))
+    :config
+    (setq drag-stuff-mode t))
 
 (def-package! vmd-mode)
+
+(def-package! highlight-indent-guides
+    :config
+    (setq highlight-indent-guides-method 'character)
+    (setq highlight-indent-guides-character ?\|)
+    (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
+
 
 (map!
     (:after evil
@@ -29,9 +36,7 @@
 
     (:after ivy
       :n "M-f" #'+ivy/project-search
-      :n "M-F" #'swiper	)
-
-)
+      :n "M-F" #'swiper	))
 
 (setq c-basic-offset 2)
 ;; web development
