@@ -1,5 +1,5 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
-
+(setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "Fira Code Mod" :size 13)
       doom-variable-pitch-font (font-spec :family "Fira Sans")
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
@@ -19,7 +19,6 @@
     (setq highlight-indent-guides-method 'character)
     (setq highlight-indent-guides-character ?\|)
     (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
-
 
 (map!
     (:after evil

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: logProps
+# key: lprops
+# --
+data => { console.log('$1'); return props }
