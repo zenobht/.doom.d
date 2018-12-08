@@ -1,6 +1,6 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 (setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "Fira Code Mod" :size 13)
+(setq doom-font (font-spec :family "Fira Code Mod" :size 14)
       doom-variable-pitch-font (font-spec :family "Fira Sans")
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
       doom-big-font (font-spec :family "Fira Code Mod" :size 19))
