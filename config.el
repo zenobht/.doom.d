@@ -1,4 +1,11 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+
+(defun setToTextProg (myMode)
+  (dolist (hook
+           '(prog-mode-hook text-mode-hook ))
+    (add-hook hook myMode)))
+
+
 (setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "Operator Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "Fira Sans")
@@ -9,33 +16,33 @@
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
 (def-package! drag-stuff
-    :config
-    (setq drag-stuff-mode t))
+  :config
+  (setq drag-stuff-mode t))
 
 (def-package! vmd-mode)
 
 (def-package! highlight-indent-guides
-    :config
-    (setq highlight-indent-guides-method 'character)
-    (setq highlight-indent-guides-character ?\|)
-    (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-character ?\|)
+  (setToTextProg #'highlight-indent-guides-mode))
 
 (map!
-    (:after evil
-        :n "M-h" #'next-buffer
-        :n "M-l" #'previous-buffer
-        :n "M-j" #'drag-stuff-down
-        :n "M-k" #'drag-stuff-up
+ (:after evil
+   :n "M-h" #'next-buffer
+   :n "M-l" #'previous-buffer
+   :n "M-j" #'drag-stuff-down
+   :n "M-k" #'drag-stuff-up
 
-        (:leader
-            (:desc "Dumb jump" :prefix "d"
-                :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
-                :desc "Jump back"         :nv "k" #'dumb-jump-back
-                :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
+   (:leader
+     (:desc "Dumb jump" :prefix "d"
+       :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
+       :desc "Jump back"         :nv "k" #'dumb-jump-back
+       :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
 
-    (:after ivy
-      :n "M-f" #'+ivy/project-search
-      :n "M-F" #'swiper	))
+ (:after ivy
+   :n "M-f" #'+ivy/project-search
+   :n "M-F" #'swiper	))
 
 (setq c-basic-offset 2)
 ;; web development
@@ -55,4 +62,6 @@
 
 (load-file "~/.doom.d/fira.el")
 
-(add-hook 'prog-mode-hook #'fira-code-mode)
+(setToTextProg #'fira-code-mode)
+(setq whitespace-line-column 500)
+(setToTextProg #'whitespace-mode)
