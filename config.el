@@ -41,8 +41,8 @@
        :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
 
  (:after ivy
-   :n "M-f" #'+ivy/project-search
-   :n "M-F" #'swiper	))
+   :n "M-F" #'+ivy/project-search
+   :n "M-f" #'swiper	))
 
 (setq c-basic-offset 2)
 ;; web development
@@ -63,5 +63,27 @@
 (load-file "~/.doom.d/fira.el")
 
 (setToTextProg #'fira-code-mode)
+
 (setq whitespace-line-column 500)
 (setToTextProg #'whitespace-mode)
+
+(defvar my-prev-whitespace-mode nil)
+(make-variable-buffer-local 'my-prev-whitespace-mode)
+(defun pre-popup-draw ()
+  "Turn off whitespace mode before showing company complete tooltip"
+  (if whitespace-mode
+      (progn
+        (setq my-prev-whitespace-mode t)
+        (whitespace-mode -1)
+        (setq my-prev-whitespace-mode t))))
+(defun post-popup-draw ()
+  "Restore previous whitespace mode after showing company tooltip"
+  (if my-prev-whitespace-mode
+      (progn
+        (whitespace-mode 1)
+        (setq my-prev-whitespace-mode nil))))
+
+(advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
+(advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+
+(add-hook 'graphql-mode-hook (lambda() (whitespace-mode -1)))
