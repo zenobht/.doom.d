@@ -62,6 +62,23 @@
 
 (load-file "~/.doom.d/fira.el")
 
+(set-face-attribute 'font-lock-comment-face nil :foreground "#5B6268" :slant 'italic)
+(set-face-attribute 'font-lock-function-name-face nil :foreground "#c678dd" :slant 'italic)
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "#dcaeea" :slant 'italic)
+
+(with-eval-after-load "js2-mode"
+  (set-face-attribute 'js2-function-param nil :foreground "#dcaeea" :slant 'italic))
+
+(with-eval-after-load "rjsx-mode"
+  (set-face-attribute 'rjsx-attr nil :inherit font-lock-variable-name-face :slant 'normal)
+  (set-face-attribute 'rjsx-tag nil :inherit font-lock-function-name-face :slant 'italic))
+
+(with-eval-after-load "whitespace-mode"
+  (set-face-attribute 'whitespace-hspace nil :background "maroon2"))
+
+(set-face-attribute 'nobreak-space nil :background "maroon2")
+(set-face-attribute 'nobreak-hyphen nil :background "maroon2")
+
 (setToTextProg #'fira-code-mode)
 
 (setq whitespace-line-column 500)
