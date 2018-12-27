@@ -44,9 +44,6 @@
    :n "M-F" #'+ivy/project-search
    :n "M-f" #'swiper	))
 
-(global-unset-key (kbd "s-<left>"))
-(global-unset-key (kbd "s-<right>"))
-
 (setq c-basic-offset 2)
 ;; web development
 (setq coffee-tab-width 2) ; coffeescript
