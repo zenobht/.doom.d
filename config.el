@@ -23,6 +23,10 @@
 
 (def-package! vmd-mode)
 
+(def-package! kotlin-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.kt$" . kotlin-mode)))
+
 ;; setup highlight-indent-guides
 (def-package! highlight-indent-guides
   :config
@@ -45,7 +49,12 @@
 
  (:after ivy
    :n "s-F" #'+ivy/project-search
-   :n "s-f" #'swiper	))
+   :n "s-f" #'swiper	)
+
+ (:after dired
+   :map dired-mode-map
+   :n "J" #'dired-up-directory))
+
 
 ;; indentation config
 (setq c-basic-offset 2)
