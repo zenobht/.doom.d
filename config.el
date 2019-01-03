@@ -36,10 +36,10 @@
 
 (map!
  (:after evil
-   :g "s-h" #'next-buffer
-   :g "s-l" #'previous-buffer
-   :g "s-j" #'drag-stuff-down
-   :g "s-k" #'drag-stuff-up
+   :g "M-h" #'next-buffer
+   :g "M-l" #'previous-buffer
+   :g "M-j" #'drag-stuff-down
+   :g "M-k" #'drag-stuff-up
 
    (:leader
      (:desc "Dumb jump" :prefix "d"
@@ -93,38 +93,38 @@
   (add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
   )
 
-(with-eval-after-load "whitespace-mode"
-  (set-face-attribute 'whitespace-hspace nil :background "maroon2"))
-
 (set-face-attribute 'nobreak-space nil :background "maroon2")
 (set-face-attribute 'nobreak-hyphen nil :background "maroon2")
 ;; ----------------- override font faces---------------------------------------------
 
 ;; set minor modes to prog and text mode
 (setToTextProg #'fira-code-mode)
-(setq whitespace-line-column 500)
-(setToTextProg #'whitespace-mode)
 
-;;---------------------------------------handle whitespace mode with company popup
-(defvar my-prev-whitespace-mode nil)
-(make-variable-buffer-local 'my-prev-whitespace-mode)
-(defun pre-popup-draw ()
-  "Turn off whitespace mode before showing company complete tooltip"
-  (if whitespace-mode
-      (progn
-        (setq my-prev-whitespace-mode t)
-        (whitespace-mode -1)
-        (setq my-prev-whitespace-mode t))))
-(defun post-popup-draw ()
-  "Restore previous whitespace mode after showing company tooltip"
-  (if my-prev-whitespace-mode
-      (progn
-        (whitespace-mode 1)
-        (setq my-prev-whitespace-mode nil))))
+;; (setq whitespace-line-column 500)
+;; (setToTextProg #'whitespace-mode)
 
-(advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
-(advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
-;;---------------------------------------handle whitespace mode with company popup
+;; ;;---------------------------------------handle whitespace mode with company popup
+;; (defvar my-prev-whitespace-mode nil)
+;; (make-variable-buffer-local 'my-prev-whitespace-mode)
 
-;;---------------------------------------handle whitespace mode in graphql mode
-(add-hook 'graphql-mode-hook (lambda() (whitespace-mode -1)))
+;; (defun pre-popup-draw ()
+;;   "Turn off whitespace mode before showing company complete tooltip"
+;;   (if whitespace-mode
+;;       (progn
+;;         (setq my-prev-whitespace-mode t)
+;;         (whitespace-mode -1)
+;;         (setq my-prev-whitespace-mode t))))
+
+;; (defun post-popup-draw ()
+;;   "Restore previous whitespace mode after showing company tooltip"
+;;   (if my-prev-whitespace-mode
+;;       (progn
+;;         (whitespace-mode 1)
+;;         (setq my-prev-whitespace-mode nil))))
+
+;; (advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
+;; (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+;; ;;---------------------------------------handle whitespace mode with company popup
+
+;; ;;---------------------------------------handle whitespace mode in graphql mode
+;; (add-hook 'graphql-mode-hook (lambda() (whitespace-mode -1)))
