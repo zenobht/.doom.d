@@ -87,14 +87,29 @@
 (set-face-attribute 'font-lock-function-name-face nil :inherit 'font-lock-function-name-face :slant 'italic)
 (set-face-attribute 'font-lock-variable-name-face nil :inherit 'font-lock-variable-name-face :slant 'italic)
 
-(with-eval-after-load "js2-mode"
+(def-package! js2-mode
+  :config
   (set-face-attribute 'js2-function-param nil :inherit 'font-lock-variable-name-face :slant 'italic))
 
-(with-eval-after-load "rjsx-mode"
+(defun my/prettier-setup ()
+  (print "test")
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (prettier (and root
+                      (expand-file-name "node_modules/.bin/prettier"
+                                        root))))
+    (if (not (and prettier (file-executable-p prettier)))
+        ;; hack to remove formatting for js files if prettier is not installed locally
+         (advice-remove #'format-all-buffer :override #'+format/buffer)
+      )))
+
+(def-package! rjsx-mode
+  :config
   (set-face-attribute 'rjsx-attr nil :inherit 'font-lock-variable-name-face :slant 'normal)
   (set-face-attribute 'rjsx-tag nil :inherit 'font-lock-function-name-face :slant 'italic)
   (add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
-  )
+  (add-hook 'rjsx-mode-hook #'my/prettier-setup))
 
 (set-face-attribute 'nobreak-space nil :background "maroon2")
 (set-face-attribute 'nobreak-hyphen nil :background "maroon2")
