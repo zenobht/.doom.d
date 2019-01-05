@@ -103,33 +103,33 @@
 ;; set minor modes to prog and text mode
 (setToTextProg #'fira-code-mode)
 
-;; (setq whitespace-line-column 500)
-;; (setToTextProg #'whitespace-mode)
+(setq whitespace-line-column 500)
+(setToTextProg #'whitespace-mode)
+(setq whitespace-style '(trailing tabs lines-tail newline newline-mark))
+;;---------------------------------------handle whitespace mode with company popup
+(defvar my-prev-whitespace-mode nil)
+(make-variable-buffer-local 'my-prev-whitespace-mode)
 
-;; ;;---------------------------------------handle whitespace mode with company popup
-;; (defvar my-prev-whitespace-mode nil)
-;; (make-variable-buffer-local 'my-prev-whitespace-mode)
+(defun pre-popup-draw ()
+  "Turn off whitespace mode before showing company complete tooltip"
+  (if whitespace-mode
+      (progn
+        (setq my-prev-whitespace-mode t)
+        (whitespace-mode -1)
+        (setq my-prev-whitespace-mode t))))
 
-;; (defun pre-popup-draw ()
-;;   "Turn off whitespace mode before showing company complete tooltip"
-;;   (if whitespace-mode
-;;       (progn
-;;         (setq my-prev-whitespace-mode t)
-;;         (whitespace-mode -1)
-;;         (setq my-prev-whitespace-mode t))))
+(defun post-popup-draw ()
+  "Restore previous whitespace mode after showing company tooltip"
+  (if my-prev-whitespace-mode
+      (progn
+        (whitespace-mode 1)
+        (setq my-prev-whitespace-mode nil))))
 
-;; (defun post-popup-draw ()
-;;   "Restore previous whitespace mode after showing company tooltip"
-;;   (if my-prev-whitespace-mode
-;;       (progn
-;;         (whitespace-mode 1)
-;;         (setq my-prev-whitespace-mode nil))))
+(advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
+(advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+;;---------------------------------------handle whitespace mode with company popup
 
-;; (advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
-;; (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
-;; ;;---------------------------------------handle whitespace mode with company popup
-
-;; ;;---------------------------------------handle whitespace mode in graphql mode
+;;---------------------------------------handle whitespace mode in graphql mode
 ;; (add-hook 'graphql-mode-hook (lambda() (whitespace-mode -1)))
 
 (def-package! ranger
