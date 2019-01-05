@@ -142,3 +142,6 @@
   (setq ranger-dont-show-binary t)
   (setq ranger-omit-regexp "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\.DS_Store")
   )
+
+(global-linum-mode -1)
+(setToTextProg #'display-line-numbers-mode)
