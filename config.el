@@ -35,17 +35,21 @@
   (setToTextProg #'highlight-indent-guides-mode))
 
 (map!
+ (:leader
+   (:desc "custom" :prefix "j"
+     :desc "Jump to symbol"    :nv "g" #'dumb-jump-go
+     :desc "Jump back"         :nv "b" #'dumb-jump-back
+     :desc "Quick look"        :nv "q" #'dumb-jump-quick-look
+     :desc "Deer"              :nv "e" #'deer
+     :desc "Avy go to line"    :nv "l" #'avy-goto-line
+     :desc "Avy word"          :nv "w" #'avy-goto-word-1
+     ))
+
  (:after evil
    :g "M-h" #'next-buffer
    :g "M-l" #'previous-buffer
    :g "M-j" #'drag-stuff-down
-   :g "M-k" #'drag-stuff-up
-
-   (:leader
-     (:desc "Dumb jump" :prefix "d"
-       :desc "Jump to symbol"    :nv "j" #'dumb-jump-go
-       :desc "Jump back"         :nv "k" #'dumb-jump-back
-       :desc "Quick look"        :nv "q" #'dumb-jump-quick-look)))
+   :g "M-k" #'drag-stuff-up)
 
  (:after ivy
    :n "s-F" #'+ivy/project-search
@@ -54,7 +58,6 @@
  (:after dired
    :map dired-mode-map
    :n "J" #'dired-up-directory))
-
 
 ;; indentation config
 (setq c-basic-offset 2)
