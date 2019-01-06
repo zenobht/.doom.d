@@ -52,8 +52,8 @@
    :g "M-k" #'drag-stuff-up)
 
  (:after ivy
-   :n "s-F" #'+ivy/project-search
-   :n "s-f" #'swiper	)
+   :n "M-F" #'+ivy/project-search
+   :n "M-f" #'swiper	)
 
  (:after dired
    :map dired-mode-map
@@ -92,7 +92,6 @@
   (set-face-attribute 'js2-function-param nil :inherit 'font-lock-variable-name-face :slant 'italic))
 
 (defun my/prettier-setup ()
-  (print "test")
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
