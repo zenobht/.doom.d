@@ -40,7 +40,7 @@
      :desc "Jump to symbol"    :nv "g" #'dumb-jump-go
      :desc "Jump back"         :nv "b" #'dumb-jump-back
      :desc "Quick look"        :nv "q" #'dumb-jump-quick-look
-     :desc "Deer"              :nv "e" #'deer
+     :desc "Deer"              :nv "d" #'deer
      :desc "Avy go to line"    :nv "l" #'avy-goto-line
      :desc "Avy word"          :nv "w" #'avy-goto-word-1
      ))
@@ -96,11 +96,11 @@
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
          (prettier (and root
-                      (expand-file-name "node_modules/.bin/prettier"
-                                        root))))
+                        (expand-file-name "node_modules/.bin/prettier"
+                                          root))))
     (if (not (and prettier (file-executable-p prettier)))
         ;; hack to remove formatting for js files if prettier is not installed locally
-         (advice-remove #'format-all-buffer :override #'+format/buffer)
+        (advice-remove #'format-all-buffer :override #'+format/buffer)
       )))
 
 (def-package! rjsx-mode
