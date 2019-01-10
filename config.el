@@ -146,16 +146,16 @@
 ;;---------------------------------------handle whitespace mode in graphql mode
 ;; (add-hook 'graphql-mode-hook (lambda() (whitespace-mode -1)))
 
-(def-package! ranger
-  :config
-  (ranger-override-dired-mode t)
-  (setq ranger-cleanup-eagerly t)
-  (setq ranger-hide-cursor nil)
-  (setq ranger-excluded-extensions '("mkv" "iso" "mp4", "dmg"))
-  (setq ranger-max-preview-size 10)
-  (setq ranger-dont-show-binary t)
-  (setq ranger-omit-regexp "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\.DS_Store")
-  )
-
 (global-linum-mode -1)
 (setToTextProg #'display-line-numbers-mode)
+(setq ranger-deer-show-details t)
+(add-hook 'typescript-mode-hook #'my/prettier-setup)
+
+(def-package! web-mode
+  :config
+  (set-face-attribute 'web-mode-html-tag-face nil :inherit 'web-mode-html-tag-face :slant 'italic))
+
+;; enable emmet for all js based modes
+(dolist (hook
+           '(rjsx-mode-hook web-mode-hook typescript-mode-hook tide-mode-hook))
+    (add-hook hook 'emmet-mode))

@@ -27,12 +27,12 @@
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        ;;doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-modeline     ; a snazzy Atom-inspired mode-line
+       doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       modeline          ; snazzy, Atom-inspired modeline, plus API
+       ; modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
@@ -53,7 +53,8 @@
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired
+         +ranger)         ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        ;;eshell            ; a consistent, cross-platform shell (WIP)
@@ -63,13 +64,13 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
-       ;;ansible
-       ;;docker
+       ansible
+       docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
        macos             ; MacOS-specific commands
-       ;;make              ; run make tasks from Emacs
+       make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
        ;;password-store    ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -125,7 +126,7 @@
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
-       (sh zsh)        ; she sells (ba|z|fi)sh shells on the C xor
+       (sh +zsh)        ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        web               ; the tubes
@@ -156,6 +157,6 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +snippets +smartparens +evil-commands))
 
 

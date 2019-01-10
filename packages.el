@@ -3,4 +3,3 @@
 (package! ivy-rich :disable t)
 (package! highlight-indent-guides)
 (package! kotlin-mode)
-(package! ranger)
