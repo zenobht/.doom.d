@@ -37,12 +37,13 @@
 (map!
  (:leader
    (:desc "custom" :prefix "j"
-     :desc "Jump to symbol"    :nv "g" #'dumb-jump-go
-     :desc "Jump back"         :nv "b" #'dumb-jump-back
-     :desc "Quick look"        :nv "q" #'dumb-jump-quick-look
-     :desc "Deer"              :nv "d" #'deer
-     :desc "Avy go to line"    :nv "l" #'avy-goto-line
-     :desc "Avy word"          :nv "w" #'avy-goto-word-1
+     :desc "Jump to symbol"        :nv "g" #'dumb-jump-go
+     :desc "Jump back"             :nv "b" #'dumb-jump-back
+     :desc "Quick look"            :nv "q" #'dumb-jump-quick-look
+     :desc "Deer"                  :nv "d" #'deer
+     :desc "Avy go to line"        :nv "l" #'avy-goto-line
+     :desc "Avy word"              :nv "w" #'avy-goto-word-1
+     :desc "Select all"            :nv "a" #'evil-multiedit-match-all
      ))
 
  (:after evil
@@ -159,3 +160,5 @@
 (dolist (hook
            '(rjsx-mode-hook web-mode-hook typescript-mode-hook tide-mode-hook))
     (add-hook hook 'emmet-mode))
+
+(add-hook 'graphql-mode-hook #'my/prettier-setup)
