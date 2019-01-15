@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: prettier
+# key: prconfig
+# --
+{
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "semi": false,
+  "bracketSpacing": true
+}
