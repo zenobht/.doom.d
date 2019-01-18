@@ -47,8 +47,8 @@
      ))
 
  (:after evil
-   :g "M-h" #'next-buffer
-   :g "M-l" #'previous-buffer
+   :g "M-h" #'tabbar-backward
+   :g "M-l" #'tabbar-forward
    :g "M-j" #'drag-stuff-down
    :g "M-k" #'drag-stuff-up)
 
@@ -162,3 +162,14 @@
     (add-hook hook 'emmet-mode))
 
 (add-hook 'graphql-mode-hook #'my/prettier-setup)
+
+(def-package! tabbar
+  :config
+  (set-face-attribute 'tabbar-selected nil :slant 'italic :weight 'bold)
+  (set-face-attribute 'tabbar-unselected nil :foreground "gray60")
+  (setq tabbar-separator '(1.5))
+  (setq tabbar-use-images nil)
+  (setq tabbar-buffer-groups-function
+        (lambda ()
+          (list "All")))
+  )
