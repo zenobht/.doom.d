@@ -165,8 +165,9 @@
 
 (def-package! tabbar
   :config
-  (set-face-attribute 'tabbar-unselected nil :inherit 'tabbar-default :foreground "gray60")
-  (setq tabbar-separator '(1))
+  (set-face-attribute 'tabbar-selected nil :slant 'italic :weight 'bold)
+  (set-face-attribute 'tabbar-unselected nil :foreground "gray60")
+  (setq tabbar-separator '(1.5))
   (setq tabbar-use-images nil)
   (setq tabbar-buffer-groups-function
         (lambda ()
