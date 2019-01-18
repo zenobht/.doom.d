@@ -173,3 +173,5 @@
         (lambda ()
           (list "All")))
   )
+
+(setq +doom-modeline-buffer-file-name-style 'relative-to-project)
