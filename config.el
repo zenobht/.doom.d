@@ -47,14 +47,14 @@
      ))
 
  (:after evil
-   :g "M-h" #'tabbar-backward
-   :g "M-l" #'tabbar-forward
-   :g "M-j" #'drag-stuff-down
-   :g "M-k" #'drag-stuff-up)
+   :g "s-h" #'tabbar-backward
+   :g "s-l" #'tabbar-forward
+   :g "s-j" #'drag-stuff-down
+   :g "s-k" #'drag-stuff-up)
 
  (:after ivy
-   :n "M-F" #'+ivy/project-search
-   :n "M-f" #'swiper	)
+   :n "s-F" #'+ivy/project-search
+   :n "s-f" #'swiper	)
 
  (:after dired
    :map dired-mode-map
