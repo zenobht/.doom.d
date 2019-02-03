@@ -29,7 +29,7 @@
        ;;doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
+       ;;evil-goggles      ; display visual hints when editing in evil
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        ; modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -64,13 +64,13 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
-       ansible
-       docker
-       editorconfig      ; let someone else argue about tabs vs spaces
+       ;; ansible
+       ;; docker
+       ;; editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
        macos             ; MacOS-specific commands
-       make              ; run make tasks from Emacs
+       ;; make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
        ;;password-store    ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -99,7 +99,7 @@
        ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
-       (java +meghanada) ; the poster child for carpal tunnel syndrome
+       (java +eclim)      ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;latex             ; writing papers in Emacs has never been so fun
