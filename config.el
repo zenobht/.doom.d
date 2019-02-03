@@ -1,4 +1,8 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+(setq mac-option-key-is-meta nil)
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier nil)
 
 (defun setToTextProg (myMode)
   (dolist (hook
@@ -47,14 +51,18 @@
      ))
 
  (:after evil
-   :g "s-h" #'tabbar-backward
-   :g "s-l" #'tabbar-forward
-   :g "s-j" #'drag-stuff-down
-   :g "s-k" #'drag-stuff-up)
+   :g "M-h" #'tabbar-backward
+   :g "M-l" #'tabbar-forward
+   :g "M-j" #'drag-stuff-down
+   :g "M-k" #'drag-stuff-up
+   :n "M-d" #'evil-multiedit-match-and-next
+   :g "M-c" #'evil-yank
+   :g "M-v" #'yank
+   )
 
  (:after ivy
-   :n "s-F" #'+ivy/project-search
-   :n "s-f" #'swiper	)
+   :n "M-f" #'+ivy/project-search
+   :n "M-F" #'swiper	)
 
  (:after dired
    :map dired-mode-map
