@@ -166,8 +166,8 @@
 
 ;; enable emmet for all js based modes
 (dolist (hook
-           '(rjsx-mode-hook web-mode-hook typescript-mode-hook tide-mode-hook))
-    (add-hook hook 'emmet-mode))
+         '(rjsx-mode-hook web-mode-hook typescript-mode-hook tide-mode-hook))
+  (add-hook hook 'emmet-mode))
 
 (add-hook 'graphql-mode-hook #'my/prettier-setup)
 
@@ -183,3 +183,7 @@
   )
 
 (setq +doom-modeline-buffer-file-name-style 'relative-to-project)
+
+(add-hook 'json-mode-hook
+          (lambda ()
+            (setq js-indent-level 2)))
