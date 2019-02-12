@@ -51,18 +51,24 @@
      ))
 
  (:after evil
-   :g "M-h" #'tabbar-backward
-   :g "M-l" #'tabbar-forward
-   :g "M-j" #'drag-stuff-down
-   :g "M-k" #'drag-stuff-up
+   :n "H" #'tabbar-backward
+   :n "L" #'tabbar-forward
+   :nvi "M-j" #'drag-stuff-down
+   :nvi "M-k" #'drag-stuff-up
    :n "M-d" #'evil-multiedit-match-and-next
    :g "M-c" #'evil-yank
    :g "M-v" #'yank
+   :g "M-a" #'mark-whole-buffer
    )
 
  (:after ivy
-   :n "M-f" #'+ivy/project-search
-   :n "M-F" #'swiper	)
+   :n "M-F" #'+ivy/project-search
+   :n "M-f" #'swiper
+   (:map ivy-minibuffer-map
+     "C-j"  nil
+     "C-k"  nil
+     )
+   )
 
  (:after dired
    :map dired-mode-map
