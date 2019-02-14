@@ -36,6 +36,7 @@
   :config
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-character ?\|)
+  (set-face-attribute 'highlight-indent-guides-character-face nil :inherit 'custom-variable-obsolete)
   (setToTextProg #'highlight-indent-guides-mode))
 
 (map!
