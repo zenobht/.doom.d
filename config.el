@@ -2,7 +2,7 @@
 (setq mac-option-key-is-meta nil)
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
-(setq mac-option-modifier nil)
+(setq mac-option-modifier 'alt)
 
 (defun setToTextProg (myMode)
   (dolist (hook
@@ -51,14 +51,21 @@
      ))
 
  (:after evil
-   :n "H" #'tabbar-backward
-   :n "L" #'tabbar-forward
+   :n "H" #'previous-buffer
+   :n "L" #'next-buffer
    :nvi "M-j" #'drag-stuff-down
    :nvi "M-k" #'drag-stuff-up
    :n "M-d" #'evil-multiedit-match-and-next
    :g "M-c" #'evil-yank
    :g "M-v" #'yank
    :g "M-a" #'mark-whole-buffer
+   )
+
+ (:after ranger-key
+   (:map ranger-mode-map
+     "H"   nil
+     "L"   nil
+     )
    )
 
  (:after ivy
@@ -177,16 +184,16 @@
 
 (add-hook 'graphql-mode-hook #'my/prettier-setup)
 
-(def-package! tabbar
-  :config
-  (set-face-attribute 'tabbar-selected nil :slant 'italic :weight 'bold)
-  (set-face-attribute 'tabbar-unselected nil :foreground "gray60")
-  (setq tabbar-separator '(1.5))
-  (setq tabbar-use-images nil)
-  (setq tabbar-buffer-groups-function
-        (lambda ()
-          (list "All")))
-  )
+;; (def-package! tabbar
+;;   :config
+;;   (set-face-attribute 'tabbar-selected nil :slant 'italic :weight 'bold)
+;;   (set-face-attribute 'tabbar-unselected nil :foreground "gray60")
+;;   (setq tabbar-separator '(1.5))
+;;   (setq tabbar-use-images nil)
+;;   (setq tabbar-buffer-groups-function
+;;         (lambda ()
+;;           (list "All")))
+;;   )
 
 (setq +doom-modeline-buffer-file-name-style 'relative-to-project)
 
