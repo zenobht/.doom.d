@@ -3,6 +3,8 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'alt)
+(setq-default initial-major-mode 'markdown-mode)
+
 
 (defun setToTextProg (myMode)
   (dolist (hook
@@ -39,6 +41,16 @@
   (set-face-attribute 'highlight-indent-guides-character-face nil :inherit 'custom-variable-obsolete)
   (setToTextProg #'highlight-indent-guides-mode))
 
+(defun vsplit-and-create-buffer ()
+  (interactive)
+  (split-window-horizontally)
+  (let (($buf (generate-new-buffer "*temp*")))
+    (switch-to-buffer $buf)
+    (funcall initial-major-mode)
+    (setq buffer-offer-save t)
+    $buf
+    ))
+
 (map!
  (:leader
    (:desc "custom" :prefix "j"
@@ -49,7 +61,11 @@
      :desc "Avy go to line"        :nv "l" #'avy-goto-line
      :desc "Avy word"              :nv "w" #'avy-goto-word-1
      :desc "Select all"            :nv "a" #'evil-multiedit-match-all
-     ))
+     )
+   (:prefix "b"
+     :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer)
+   )
+
 
  (:after evil
    :n "H" #'previous-buffer
@@ -184,17 +200,6 @@
   (add-hook hook 'emmet-mode))
 
 (add-hook 'graphql-mode-hook #'my/prettier-setup)
-
-;; (def-package! tabbar
-;;   :config
-;;   (set-face-attribute 'tabbar-selected nil :slant 'italic :weight 'bold)
-;;   (set-face-attribute 'tabbar-unselected nil :foreground "gray60")
-;;   (setq tabbar-separator '(1.5))
-;;   (setq tabbar-use-images nil)
-;;   (setq tabbar-buffer-groups-function
-;;         (lambda ()
-;;           (list "All")))
-;;   )
 
 (setq +doom-modeline-buffer-file-name-style 'relative-to-project)
 
