@@ -1,8 +1,9 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
-(setq mac-option-key-is-meta nil)
-(setq mac-command-key-is-meta t)
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'alt)
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier nil)
+
 (setq-default initial-major-mode 'text-mode)
 
 (defun setToTextProg (myMode)
@@ -74,10 +75,15 @@
    :nvi "M-j" #'drag-stuff-down
    :nvi "M-k" #'drag-stuff-up
    :n "M-d" #'evil-multiedit-match-and-next
-   :g "M-c" #'evil-yank
-   :g "M-v" #'yank
-   :g "M-a" #'mark-whole-buffer
-   :g "M-q" #'evil-quit
+   ;;-------------------------------------------------------------------------------
+   ;; keybindings that mimics cmd functions
+   :g "M-h" #'ns-do-hide-emacs
+   :g "M-H" #'ns-do-hide-others
+   :g "M-`" #'+workspace/cycle ;; as only one frame is open always, switch between workspaces
+   :g "M-c" #'evil-yank ;; copy
+   :g "M-v" #'yank  ;; paste
+   :g "M-a" #'mark-whole-buffer ;; select all
+   :g "M-q" #'evil-quit  ;; quit
    )
 
  (:after ranger-key
