@@ -3,8 +3,7 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'alt)
-(setq-default initial-major-mode 'markdown-mode)
-
+(setq-default initial-major-mode 'text-mode)
 
 (defun setToTextProg (myMode)
   (dolist (hook
@@ -64,6 +63,8 @@
      )
    (:prefix "b"
      :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer)
+   (:prefix "w"
+     desc "Kill buffer and split" :n "C" #'kill-buffer-and-window)
    )
 
 
