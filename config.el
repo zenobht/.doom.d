@@ -64,7 +64,7 @@
    (:prefix "b"
      :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer)
    (:prefix "w"
-     desc "Kill buffer and split" :n "C" #'kill-buffer-and-window)
+     :desc "Kill buffer and split" :n "C" #'kill-buffer-and-window)
    )
 
 
@@ -77,6 +77,7 @@
    :g "M-c" #'evil-yank
    :g "M-v" #'yank
    :g "M-a" #'mark-whole-buffer
+   :g "M-q" #'evil-quit
    )
 
  (:after ranger-key
