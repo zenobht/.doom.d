@@ -92,9 +92,6 @@
       whitespace-line-column 500
       whitespace-style '(trailing tabs lines-tail newline newline-mark)
 
-      ;; ranger config
-      ranger-deer-show-details t
-
       ;; search config for /
       ;; enable case sensitive search in evil
       evil-ex-search-case 'sensitive
@@ -107,6 +104,11 @@
 (def-package! drag-stuff
   :config
   (setq drag-stuff-mode t))
+
+(def-package! ranger
+  :config
+  (setq ranger-deer-show-details t
+        ranger-cleanup-on-disable t))
 
 (def-package! vmd-mode)
 
