@@ -139,6 +139,13 @@
   (add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
   (add-hook 'rjsx-mode-hook #'my/prettier-setup))
 
+(def-package! markdown-mode
+  :config
+  ;; disable cmd+` in markdown mode as it blocks switching frames'
+  (map! :map markdown-mode-map
+        "M-`"   nil)
+  )
+
 ;;------------------------------------key bindings-----------------------------------
 (map!
  (:leader
@@ -152,9 +159,13 @@
      :desc "Select all"            :nv "a" #'evil-multiedit-match-all
      )
    (:prefix "b"
-     :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer)
+     :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer
+     :desc "Switch buffer"         :n "b" #'counsel-projectile-switch-to-buffer
+     )
    (:prefix "w"
-     :desc "Kill buffer and split" :n "C" #'kill-buffer-and-window)
+     :desc "Kill buffer and split" :n "C" #'kill-buffer-and-window
+     :desc "Delete window"         :n "c" #'delete-window
+     )
    )
 
  (:after evil
@@ -172,6 +183,7 @@
    :g "M-v" #'yank  ;; paste
    :g "M-a" #'mark-whole-buffer ;; select all
    :g "M-q" #'evil-quit  ;; quit
+   :g "M-`" #'other-frame
    )
 
  (:after ranger-key
@@ -242,3 +254,4 @@
 (add-hook 'json-mode-hook
           (lambda ()
             (setq js-indent-level 2)))
+
