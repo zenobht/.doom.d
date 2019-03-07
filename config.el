@@ -1,12 +1,12 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 ;; ------------------------------functions----------------------------------
 
-(defun setToTextProg (myMode)
+(defun my/setToTextProg (myMode)
   (dolist (hook
            '(prog-mode-hook text-mode-hook ))
     (add-hook hook myMode)))
 
-(defun vsplit-and-create-buffer ()
+(defun my/vsplit-and-create-buffer ()
   (interactive)
   (split-window-horizontally)
   (let (($buf (generate-new-buffer "*temp*")))
@@ -17,7 +17,7 @@
     ))
 
 
-(defun pre-popup-draw ()
+(defun my/pre-popup-draw ()
   "Turn off whitespace mode before showing company complete tooltip"
   (if whitespace-mode
       (progn
@@ -25,14 +25,14 @@
         (whitespace-mode -1)
         (setq my-prev-whitespace-mode t))))
 
-(defun post-popup-draw ()
+(defun my/post-popup-draw ()
   "Restore previous whitespace mode after showing company tooltip"
   (if my-prev-whitespace-mode
       (progn
         (whitespace-mode 1)
         (setq my-prev-whitespace-mode nil))))
 
-(defun sort-words (reverse beg end)
+(defun my/sort-words (reverse beg end)
   "Sort words in region alphabetically, in REVERSE if negative.
     Prefixed with negative \\[universal-argument], sorts in reverse.
 
@@ -102,37 +102,45 @@
 ;; ------------------------package config----------------------------------------------
 ;; enable drag-stuff-mode
 (def-package! drag-stuff
+  :defer t
   :config
   (setq drag-stuff-mode t))
 
 (def-package! ranger
+  :defer t
   :config
   (setq ranger-deer-show-details t
         ranger-cleanup-on-disable t))
 
-(def-package! vmd-mode)
+(def-package! vmd-mode
+    :defer t)
 
 (def-package! kotlin-mode
+  :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.kt$" . kotlin-mode)))
 
 ;; setup highlight-indent-guides
 (def-package! highlight-indent-guides
+  :defer t
   :config
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character ?\|)
   (set-face-attribute 'highlight-indent-guides-character-face nil :inherit 'custom-variable-obsolete)
-  (setToTextProg #'highlight-indent-guides-mode))
+  (my/setToTextProg #'highlight-indent-guides-mode))
 
 (def-package! js2-mode
+  :defer t
   :config
   (set-face-attribute 'js2-function-param nil :inherit 'font-lock-variable-name-face :slant 'italic))
 
 (def-package! web-mode
+  :defer t
   :config
   (set-face-attribute 'web-mode-html-tag-face nil :inherit 'web-mode-html-tag-face :slant 'italic))
 
 (def-package! rjsx-mode
+  :defer t
   :config
   (set-face-attribute 'rjsx-attr nil :inherit 'font-lock-variable-name-face :slant 'normal)
   (set-face-attribute 'rjsx-tag nil :inherit 'font-lock-function-name-face :slant 'italic)
@@ -140,6 +148,7 @@
   (add-hook 'rjsx-mode-hook #'my/prettier-setup))
 
 (def-package! markdown-mode
+  :defer t
   :config
   ;; disable cmd+` in markdown mode as it blocks switching frames'
   (map! :map markdown-mode-map
@@ -159,7 +168,7 @@
      :desc "Select all"            :nv "a" #'evil-multiedit-match-all
      )
    (:prefix "b"
-     :desc "Split & Create Buffer" :n "x" #'vsplit-and-create-buffer
+     :desc "Split & Create Buffer" :n "x" #'my/vsplit-and-create-buffer
      :desc "Switch buffer"         :n "b" #'counsel-projectile-switch-to-buffer
      )
    (:prefix "w"
@@ -224,15 +233,15 @@
 ;; ----------------- override font faces---------------------------------------------
 
 ;; set minor modes to prog and text mode
-(setToTextProg #'fira-code-mode)
+(my/setToTextProg #'fira-code-mode)
 
-(setToTextProg #'whitespace-mode)
+(my/setToTextProg #'whitespace-mode)
 ;;---------------------------------------handle whitespace mode with company popup
 (defvar my-prev-whitespace-mode nil)
 (make-variable-buffer-local 'my-prev-whitespace-mode)
 
-(advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
-(advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+(advice-add 'company-pseudo-tooltip-unhide :before #'my/pre-popup-draw)
+(advice-add 'company-pseudo-tooltip-hide :after #'my/post-popup-draw)
 ;;---------------------------------------handle whitespace mode with company popup
 
 ;;---------------------------------------handle whitespace mode in graphql mode
@@ -240,7 +249,7 @@
 
 (global-visual-line-mode +1)
 (global-linum-mode -1)
-(setToTextProg #'display-line-numbers-mode)
+(my/setToTextProg #'display-line-numbers-mode)
 
 (add-hook 'typescript-mode-hook #'my/prettier-setup)
 
@@ -255,3 +264,7 @@
           (lambda ()
             (setq js-indent-level 2)))
 
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (doom/reload-font)
+            ))
