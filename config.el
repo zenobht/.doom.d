@@ -263,8 +263,3 @@
 (add-hook 'json-mode-hook
           (lambda ()
             (setq js-indent-level 2)))
-
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (doom/reload-font)
-            ))
