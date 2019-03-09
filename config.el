@@ -97,7 +97,7 @@
       evil-ex-search-case 'sensitive
       )
 
-(setq-default initial-major-mode 'text-mode)
+(setq-default initial-major-mode 'markdown-mode)
 
 ;; ------------------------package config----------------------------------------------
 ;; enable drag-stuff-mode
@@ -153,6 +153,7 @@
   ;; disable cmd+` in markdown mode as it blocks switching frames'
   (map! :map markdown-mode-map
         "M-`"   nil)
+  (setq markdown-command "/usr/local/bin/pandoc")
   )
 
 ;;------------------------------------key bindings-----------------------------------
