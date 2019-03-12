@@ -55,6 +55,12 @@
         (advice-remove #'format-all-buffer :override #'+format/buffer)
       )))
 
+(defun my/escape-and-save ()
+  (interactive)
+  (evil-force-normal-state)
+  (save-buffer)
+  )
+
 ;; -------------------------config------------------------------------------------
 (setq
       ;; key mappings
@@ -152,7 +158,9 @@
   :config
   ;; disable cmd+` in markdown mode as it blocks switching frames'
   (map! :map markdown-mode-map
-        "M-`"   nil)
+        "M-`"  #'other-frame
+        (:leader (:prefix "m" :n "v" #'vmd-mode))
+        )
   (setq markdown-command "/usr/local/bin/pandoc")
   )
 
@@ -188,12 +196,13 @@
    ;; keybindings that mimics cmd functions
    :g "M-h" #'ns-do-hide-emacs
    :g "M-H" #'ns-do-hide-others
-   :g "M-`" #'+workspace/cycle ;; as only one frame is open always, switch between workspaces
+   ;; :g "M-`" #'+workspace/cycle ;; as only one frame is open always, switch between workspaces
    :g "M-c" #'evil-yank ;; copy
    :g "M-v" #'yank  ;; paste
    :g "M-a" #'mark-whole-buffer ;; select all
    :g "M-q" #'evil-quit  ;; quit
    :g "M-`" #'other-frame
+   :g "M-s" #'my/escape-and-save
    )
 
  (:after ranger-key
