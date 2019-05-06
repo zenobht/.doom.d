@@ -178,7 +178,7 @@
      )
    (:prefix "b"
      :desc "Split & Create Buffer" :n "x" #'my/vsplit-and-create-buffer
-     :desc "Switch buffer"         :n "b" #'counsel-projectile-switch-to-buffer
+     :desc "Switch buffer"         :n "b" #'helm-projectile-switch-to-buffer
      )
    (:prefix "w"
      :desc "Kill buffer and split" :n "C" #'kill-buffer-and-window
@@ -187,8 +187,10 @@
    )
 
  (:after evil
-   :n "H" #'previous-buffer
-   :n "L" #'next-buffer
+   :n "M-[" #'dumb-jump-back
+   :n "M-]" #'dumb-jump-go
+   :n "M-{" #'previous-buffer
+   :n "M-}" #'next-buffer
    :nvi "M-j" #'drag-stuff-down
    :nvi "M-k" #'drag-stuff-up
    :n "M-d" #'evil-multiedit-match-and-next
@@ -211,15 +213,19 @@
      "L"   nil
      )
    )
-
- (:after ivy
-   :n "M-F" #'+ivy/project-search
-   :n "M-f" #'swiper
-   (:map ivy-minibuffer-map
-     "C-j"  nil
-     "C-k"  nil
-     )
+ (:after helm
+   :n "M-F" #'helm-projectile-rg
+   :n "M-f" #'swiper-helm
    )
+
+ ;; (:after ivy
+ ;;   :n "M-F" #'+ivy/project-search
+ ;;   :n "M-f" #'swiper
+ ;;   (:map ivy-minibuffer-map
+ ;;     "C-j"  nil
+ ;;     "C-k"  nil
+ ;;     )
+ ;;   )
 
  (:after dired
    :map dired-mode-map
