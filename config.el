@@ -81,6 +81,10 @@
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
       doom-big-font (font-spec :family "Fira Code Mod" :size 19)
 
+      doom-modeline-buffer-file-name-style 'file-name
+      doom-modeline-icon t
+      doom-modeline-major-mode-icon t
+
       ;; indentation config
       c-basic-offset 2
 
@@ -178,7 +182,7 @@
      )
    (:prefix "b"
      :desc "Split & Create Buffer" :n "x" #'my/vsplit-and-create-buffer
-     :desc "Switch buffer"         :n "b" #'helm-projectile-switch-to-buffer
+     :desc "Switch buffer"         :n "b" #'projectile-switch-to-buffer
      )
    (:prefix "w"
      :desc "Kill buffer and split" :n "C" #'kill-buffer-and-window
@@ -198,12 +202,12 @@
    ;; keybindings that mimics cmd functions
    :g "M-h" #'ns-do-hide-emacs
    :g "M-H" #'ns-do-hide-others
-   ;; :g "M-`" #'+workspace/cycle ;; as only one frame is open always, switch between workspaces
+   :g "M-`" #'+workspace/cycle ;; as only one frame is open always, switch between workspaces
    :g "M-c" #'evil-yank ;; copy
    :g "M-v" #'yank  ;; paste
    :g "M-a" #'mark-whole-buffer ;; select all
    :g "M-q" #'evil-quit  ;; quit
-   :g "M-`" #'other-frame
+   ;; :g "M-`" #'other-frame
    :g "M-s" #'my/escape-and-save
    )
 
@@ -213,19 +217,19 @@
      "L"   nil
      )
    )
- (:after helm
-   :n "M-F" #'helm-projectile-rg
-   :n "M-f" #'swiper-helm
-   )
-
- ;; (:after ivy
- ;;   :n "M-F" #'+ivy/project-search
- ;;   :n "M-f" #'swiper
- ;;   (:map ivy-minibuffer-map
- ;;     "C-j"  nil
- ;;     "C-k"  nil
- ;;     )
+ ;; (:after helm
+ ;;   :n "M-F" #'helm-projectile-rg
+ ;;   :n "M-f" #'swiper-helm
  ;;   )
+
+ (:after ivy
+   :n "M-F" #'+ivy/project-search
+   :n "M-f" #'swiper
+   (:map ivy-minibuffer-map
+     "C-j"  nil
+     "C-k"  nil
+     )
+   )
 
  (:after dired
    :map dired-mode-map
