@@ -168,6 +168,13 @@
   (setq markdown-command "/usr/local/bin/pandoc")
   )
 
+(def-package! real-auto-save
+  :defer t
+  :config
+  (setq real-auto-save-interval 5)
+  (my/setToTextProg #'real-auto-save-mode)
+  )
+
 ;;------------------------------------key bindings-----------------------------------
 (map!
  (:leader

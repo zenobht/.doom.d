@@ -3,4 +3,5 @@
 (package! ivy-rich :disable t)
 (package! highlight-indent-guides)
 (package! kotlin-mode)
+(package! real-auto-save)
 ;; (package! helm-rg)
