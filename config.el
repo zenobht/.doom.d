@@ -172,9 +172,9 @@
   :defer t
   :config
   (setq real-auto-save-interval 5)
-  (my/setToTextProg #'real-auto-save-mode)
   )
 
+  (my/setToTextProg #'real-auto-save-mode)
 ;;------------------------------------key bindings-----------------------------------
 (map!
  (:leader
@@ -236,6 +236,12 @@
      "C-j"  nil
      "C-k"  nil
      )
+   )
+ (:after org
+   :map org-mode-map
+     [S-up] #'org-move-item-up
+     [S-down] #'org-move-item-down
+     :n "M-h" #'ns-do-hide-emacs
    )
 
  (:after dired
