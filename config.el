@@ -109,6 +109,11 @@
 
 (setq-default initial-major-mode 'markdown-mode)
 
+(if (not (display-graphic-p))
+      (load-theme 'nord t)
+  (load-theme 'doom-one t)
+  )
+
 ;; ------------------------package config----------------------------------------------
 ;; enable drag-stuff-mode
 (def-package! drag-stuff

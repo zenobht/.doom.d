@@ -5,3 +5,4 @@
 (package! kotlin-mode)
 (package! real-auto-save)
 ;; (package! helm-rg)
+(package! nord-theme)
