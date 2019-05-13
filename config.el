@@ -184,8 +184,6 @@
 (map!
  (:leader
    (:desc "custom" :prefix "j"
-     :desc "Jump to symbol"        :nv "g" #'dumb-jump-go
-     :desc "Jump back"             :nv "b" #'dumb-jump-back
      :desc "Quick look"            :nv "q" #'dumb-jump-quick-look
      :desc "Deer"                  :nv "d" #'deer
      :desc "Avy go to line"        :nv "l" #'avy-goto-line
@@ -203,9 +201,9 @@
    )
 
  (:after evil
-   :n "M-[" #'dumb-jump-back
-   :n "M-]" #'dumb-jump-go
-   :n "M-{" #'previous-buffer
+   :n "M-[" #'better-jumper-jump-backward
+   :n "M-]" #'better-jumper-jump-forward
+   :n "M-{" #'previous-buffer-back
    :n "M-}" #'next-buffer
    :nvi "M-j" #'drag-stuff-down
    :nvi "M-k" #'drag-stuff-up
