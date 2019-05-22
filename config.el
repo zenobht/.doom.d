@@ -76,10 +76,10 @@
       +doom-modeline-buffer-file-name-style 'relative-to-project
 
       ;; font config
-      doom-font (font-spec :family "Operator Mono" :size 14)
+      doom-font (font-spec :family "Dank Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "Fira Sans")
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
-      doom-big-font (font-spec :family "Fira Code Mod" :size 19)
+      doom-big-font (font-spec :family "Dank Mono" :size 19)
 
       doom-modeline-buffer-file-name-style 'file-name
       doom-modeline-icon t
@@ -173,13 +173,6 @@
   (setq markdown-command "/usr/local/bin/pandoc")
   )
 
-(def-package! real-auto-save
-  :defer t
-  :config
-  (setq real-auto-save-interval 5)
-  )
-
-  (my/setToTextProg #'real-auto-save-mode)
 ;;------------------------------------key bindings-----------------------------------
 (map!
  (:leader
@@ -203,7 +196,7 @@
  (:after evil
    :n "M-[" #'better-jumper-jump-backward
    :n "M-]" #'better-jumper-jump-forward
-   :n "M-{" #'previous-buffer-back
+   :n "M-{" #'previous-buffer
    :n "M-}" #'next-buffer
    :nvi "M-j" #'drag-stuff-down
    :nvi "M-k" #'drag-stuff-up
