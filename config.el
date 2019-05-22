@@ -107,7 +107,7 @@
       evil-ex-search-case 'sensitive
       )
 
-(setq-default initial-major-mode 'markdown-mode)
+(setq-default initial-major-mode 'text-mode)
 
 (if (not (display-graphic-p))
       (load-theme 'nord t)
