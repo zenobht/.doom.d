@@ -76,10 +76,10 @@
       +doom-modeline-buffer-file-name-style 'relative-to-project
 
       ;; font config
-      doom-font (font-spec :family "Dank Mono" :size 14)
+      doom-font (font-spec :family "Operator Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "Fira Sans")
       doom-unicode-font (font-spec :family "DejaVu Sans Mono")
-      doom-big-font (font-spec :family "Dank Mono" :size 19)
+      doom-big-font (font-spec :family "Operator Mono" :size 19)
 
       doom-modeline-buffer-file-name-style 'file-name
       doom-modeline-icon t
