@@ -198,8 +198,8 @@
    :n "M-]" #'better-jumper-jump-forward
    :n "M-{" #'previous-buffer
    :n "M-}" #'next-buffer
-   :nvi "M-j" #'drag-stuff-down
-   :nvi "M-k" #'drag-stuff-up
+   :nvi "C-M-j" #'drag-stuff-down
+   :nvi "C-M-k" #'drag-stuff-up
    :n "M-d" #'evil-multiedit-match-and-next
    ;;-------------------------------------------------------------------------------
    ;; keybindings that mimics cmd functions
@@ -250,7 +250,7 @@
 ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 ;; load custom fira liguatures config
-(load-file "~/.doom.d/fira.el")
+;; (load-file "~/.doom.d/fira.el")
 
 ;; ----------------- override font faces---------------------------------------------
 (set-face-attribute 'font-lock-comment-face nil :inherit 'font-lock-comment-face :slant 'italic)
@@ -262,7 +262,7 @@
 ;; ----------------- override font faces---------------------------------------------
 
 ;; set minor modes to prog and text mode
-(my/setToTextProg #'fira-code-mode)
+;; (my/setToTextProg #'fira-code-mode)
 
 (my/setToTextProg #'whitespace-mode)
 ;;---------------------------------------handle whitespace mode with company popup
